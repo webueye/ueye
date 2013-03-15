@@ -24,9 +24,9 @@ public abstract class BaseEntity implements Serializable {
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private Long id;
 	@Column(updatable = false)
-	@Type(type = "com.taoists.common.orm.entity.type.PersistentDateTime")
+	@Type(type = "net.ueye.commons.orm.entity.type.PersistentDateTime")
 	private DateTime createDateTime;
-	@Type(type = "com.taoists.common.orm.entity.type.PersistentDateTime")
+	@Type(type = "net.ueye.commons.orm.entity.type.PersistentDateTime")
 	private DateTime lastModifyDateTime;
 
 	public Long getId() {

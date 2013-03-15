@@ -19,9 +19,9 @@
 		<property name="password" value="${password}" />
 	</bean>
 
-	<bean id="sessionFactory" class="com.taoists.common.spring.AnnotationSessionFactoryBean">
+	<bean id="sessionFactory" class="net.ueye.commons.spring.AnnotationSessionFactoryBean">
 		<property name="entityInterceptor">
-			<bean class="com.taoists.common.orm.interceptor.EntityInterceptor" />
+			<bean class="net.ueye.commons.orm.interceptor.EntityInterceptor" />
 		</property>
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties">

@@ -28,12 +28,24 @@ public abstract class CommonController {
 
 	protected String forward(String viewName) {
 		String path = this.getClass().getAnnotation(RequestMapping.class).value()[0];
-		return getModule() + path.replaceAll("-", "") + "/" + viewName;
+
+		StringBuilder builder = new StringBuilder();
+		builder.append(getModule());
+		if (getModule() != null && !"/".equals(getModule().charAt(getModule().length() - 1))) {
+			builder.append("/");
+		}
+		String controller = path.replaceAll("-", "");
+		builder.append(controller);
+		if (!"/".equals(controller.charAt(controller.length() - 1))) {
+			builder.append("/");
+		}
+		builder.append(path).append(viewName);
+
+		return builder.toString();
 	}
 
 	protected String forward(ViewName viewName) {
-		String path = this.getClass().getAnnotation(RequestMapping.class).value()[0];
-		return getModule() + path.replaceAll("-", "") + path + viewName.getValue();
+		return forward(viewName.getValue());
 	}
 
 	protected String redirect() {

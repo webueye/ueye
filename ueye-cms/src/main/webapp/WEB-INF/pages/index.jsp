@@ -1,1 +1,1 @@
-index
+${pageContext.request.contextPath}

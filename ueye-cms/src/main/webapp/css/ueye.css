@@ -1,0 +1,64 @@
+body {
+	font-size: 9pt;
+	margin-top: 10px;
+}
+
+.search {
+	background-color: #F5F5F5;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-radius: 4px 4px 4px 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+	margin-bottom: 10px;
+	padding-top: 10px;
+}
+
+.grayDiv {
+	background-color: #F5F5F5;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-radius: 4px 4px 4px 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+	margin-bottom: 10px;
+	padding-top: 10px;
+}
+
+.divFont {
+	margin-left: 10px;
+	margin-bottom: 10px;
+	font-weight: blod;
+}
+
+.gray {
+	background-color: #F5F5F5;
+}
+
+.table thead tr th {
+	text-align: left;
+}
+
+.table thead th {
+	border-top: 1px solid #DDDDDD;
+	line-height: 18px;
+	padding-left: 18px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.sorting-asc {
+	background-image: url("../img/sort_asc.png");
+	background-position: 5px center;
+	background-repeat: no-repeat;
+	padding-left: 23px;
+	cursor: pointer;
+}
+
+.cursor{
+	cursor: pointer;
+}
+
+.sorting-desc {
+	background-image: url("../img/sort_desc.png");
+	background-position: 5px center;
+	background-repeat: no-repeat;
+	padding-left: 23px;
+	cursor: pointer;
+}

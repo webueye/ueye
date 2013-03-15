@@ -18,8 +18,8 @@ import org.hibernate.usertype.UserType;
 import com.google.common.collect.Sets;
 
 /**
- * @author rubys@vip.qq.com
- * @since 2012-7-19
+ * @author rubys
+ * @since 2013-3-15
  */
 @SuppressWarnings("serial")
 public class PersistentSet implements UserType, Serializable {
