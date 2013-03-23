@@ -20,6 +20,10 @@
 
 	<mvc:annotation-driven />
 
+	<mvc:resources mapping="/img/**" location="/img/" />
+	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/css/**" location="/css/" />
+
 	<bean class="net.ueye.commons.mvc.RequestMappingHandlerMapping"
 		autowire="byName" />
 
@@ -31,9 +35,5 @@
 
 	<bean
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
-
-	<mvc:resources mapping="/img/**" location="/img/" />
-	<mvc:resources mapping="/js/**" location="/js/" />
-	<mvc:resources mapping="/css/**" location="/css/" />
 
 </beans>

@@ -1,14 +1,11 @@
 package net.ueye.cms.sys.entity;
 
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import net.ueye.cms.Const;
 import net.ueye.commons.orm.entity.BaseEntity;
-
-import org.hibernate.annotations.Type;
 
 /**
  * @author rubys
@@ -19,52 +16,33 @@ import org.hibernate.annotations.Type;
 @Table(name = Const.tablePrefix + "account")
 public class Account extends BaseEntity {
 
-	private String userNo;
-	private String nickname;
-	private String email;
-	private String username;
+	private String loginName;
+	private String plainPassword;
 	private String password;
-	private Boolean status;
-	private Boolean admin;
-	private Boolean sex;
-	private String phone;
-	private String mobile;
-	private String memo;
+	private String salt;
+	private String name;
+	private String email;
+	private String status;
 
-	private Long companyId;
-	@Type(type = "net.ueye.commons.orm.entity.type.PersistentSet")
-	private Set<Long> roles;
+	// private Team team;
+	//
+	// private List<Role> roleList = Lists.newArrayList(); // 有序的关联对象集合
 
-	public String getUserNo() {
-		return userNo;
+	public String getLoginName() {
+		return loginName;
 	}
 
-	public void setUserNo(String userNo) {
-		this.userNo = userNo;
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
 	}
 
-	public String getNickname() {
-		return nickname;
+	@Transient
+	public String getPlainPassword() {
+		return plainPassword;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
+	public void setPlainPassword(String plainPassword) {
+		this.plainPassword = plainPassword;
 	}
 
 	public String getPassword() {
@@ -75,68 +53,36 @@ public class Account extends BaseEntity {
 		this.password = password;
 	}
 
-	public Boolean getStatus() {
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public Boolean getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(Boolean admin) {
-		this.admin = admin;
-	}
-
-	public Boolean getSex() {
-		return sex;
-	}
-
-	public void setSex(Boolean sex) {
-		this.sex = sex;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
-	public String getMemo() {
-		return memo;
-	}
-
-	public void setMemo(String memo) {
-		this.memo = memo;
-	}
-
-	public Long getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
-	}
-
-	public void setRoles(Set<Long> roles) {
-		this.roles = roles;
-	}
-
-	public Set<Long> getRoles() {
-		return roles;
 	}
 
 }

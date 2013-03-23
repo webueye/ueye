@@ -8,5 +8,7 @@ import net.ueye.commons.orm.dao.BaseDao;
  * @since 2013-3-15
  */
 public interface AccountDao extends BaseDao<Account>{
+	
+	Account findByUsername(String username);
 
 }

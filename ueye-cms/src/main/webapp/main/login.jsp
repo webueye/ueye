@@ -107,14 +107,14 @@
 					<div class="control-group">
 						<div>
 							<span>用户名:</span> 
-							<input class="input-medium focused" id="username" name="account.username" type="text" placeholder="username"/>
+							<input class="input-medium focused" id="username" name="username" type="text" placeholder="username"/>
 						</div>
 					</div>
 
 					<div class="control-group">
 						<div>
 							<span>密&nbsp;&nbsp;&nbsp;码:</span> 
-							<input class="input-medium focused" id="password" name="account.password" type="password" placeholder="password"/>
+							<input class="input-medium focused" id="password" name="password" type="password" placeholder="password"/>
 						</div>
 					</div>
 

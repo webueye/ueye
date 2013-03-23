@@ -8,6 +8,7 @@ import net.ueye.commons.controller.CommonController;
 import net.ueye.commons.controller.ViewName;
 
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author rubys@vip.qq.com
  * @since 2013-2-27
  */
+@Controller
 @RequestMapping(Path.ACCOUNT)
 public class AccountController extends CommonController {
 

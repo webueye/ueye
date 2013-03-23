@@ -17,6 +17,11 @@ import net.ueye.commons.orm.dao.BaseDao;
 public class AccountServiceImpl extends BaseServiceImpl<Account> implements AccountService {
 
 	private AccountDao accountDao;
+	
+	@Override
+	public Account findByUsername(String username){
+		return accountDao.findByUsername(username);
+	}
 
 	@Override
 	public BaseDao<Account> getBaseDao() {

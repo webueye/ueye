@@ -9,4 +9,10 @@ import net.ueye.cms.sys.entity.Account;
  */
 public interface AccountService extends BaseService<Account> {
 
+	public static final String HASH_ALGORITHM = "SHA-1";
+	public static final int HASH_INTERATIONS = 1024;
+	static final int SALT_SIZE = 8;
+
+	Account findByUsername(String username);
+
 }
