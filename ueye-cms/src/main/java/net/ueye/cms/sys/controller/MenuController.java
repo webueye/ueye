@@ -12,7 +12,7 @@ import net.sf.json.JSONArray;
 import net.ueye.cms.Const;
 import net.ueye.cms.Module;
 import net.ueye.cms.commons.controller.CommonController;
-import net.ueye.cms.sys.controller.path.ResultPath;
+import net.ueye.cms.sys.controller.path.Path;
 import net.ueye.cms.sys.entity.Menu;
 import net.ueye.cms.sys.service.MenuService;
 import net.ueye.commons.controller.ViewName;
@@ -115,7 +115,7 @@ public class MenuController extends CommonController {
 		}
 		menuService.save(menu);
 		refresh(session);
-		return redirect(ResultPath.menu);
+		return redirect(Path.menu);
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
@@ -129,7 +129,7 @@ public class MenuController extends CommonController {
 		}
 		menuService.merge(menu);
 		refresh(session);
-		return redirect(ResultPath.menu);
+		return redirect(Path.menu);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -167,7 +167,7 @@ public class MenuController extends CommonController {
 		menuService.updateMenus(menus, new Menu(), id, Const.delete);
 		
 		refresh(session);
-		return redirect(ResultPath.menu);
+		return redirect(Path.menu);
 	}
 
 	@RequestMapping(value = "/nodes", produces = "text/plain;charset=UTF-8")

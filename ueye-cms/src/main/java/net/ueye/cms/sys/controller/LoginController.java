@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import net.ueye.cms.sys.controller.path.ResultPath;
+import net.ueye.cms.sys.controller.path.Path;
 import net.ueye.cms.sys.entity.Account;
 import net.ueye.cms.sys.service.AccountService;
 import net.ueye.commons.bean.Page;
@@ -28,7 +28,7 @@ import com.google.common.collect.Lists;
  * @since 2012-5-28
  */
 @Controller
-@RequestMapping(ResultPath.login)
+@RequestMapping(Path.login)
 public class LoginController extends CommonController {
 
 	@RequestMapping
@@ -65,7 +65,7 @@ public class LoginController extends CommonController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return redirect(ResultPath.login);
+		return redirect(Path.login);
 	}
 
 	@Override

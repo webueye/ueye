@@ -3,6 +3,8 @@ package net.ueye.cms.commons.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import net.ueye.cms.sys.entity.Account;
+import net.ueye.commons.bean.Page;
+import net.ueye.commons.controller.ViewName;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -13,6 +15,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  */
 @SessionAttributes("currentAccount")
 public abstract class CommonController extends net.ueye.commons.controller.CommonController {
+
+	public String index(HttpServletRequest request, Page page) {
+		return list(request, page);
+	}
+
+	public String list(HttpServletRequest request, Page page) {
+		return forward(ViewName.list);
+	}
 
 	protected Account getAccount(Model model) {
 		Object value = model.asMap().get("currentAccount");

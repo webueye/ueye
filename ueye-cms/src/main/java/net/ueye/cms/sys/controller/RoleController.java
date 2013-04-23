@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import net.ueye.cms.Module;
 import net.ueye.cms.commons.controller.CommonController;
-import net.ueye.cms.sys.controller.path.ResultPath;
+import net.ueye.cms.sys.controller.path.Path;
 import net.ueye.cms.sys.entity.Menu;
 import net.ueye.cms.sys.entity.Role;
 import net.ueye.cms.sys.service.MenuService;
@@ -32,15 +32,15 @@ import com.google.common.collect.Multimap;
 
 /**
  * @author rubys@vip.qq.com
- * @since 2012-7-19
+ * @since 2013-4-24
  */
 @Controller
-@RequestMapping(ResultPath.role)
+@RequestMapping(Path.role)
 public class RoleController extends CommonController {
 
 	@RequestMapping
 	public String list(Page page, Model model) {
-		roleService.findDatas("company.id", getAccount(model).getId(), page);
+		roleService.findPage(page);
 		return forward(ViewName.list);
 	}
 
@@ -62,7 +62,7 @@ public class RoleController extends CommonController {
 		logger.debug("create: role[{}]", role);
 
 		roleService.save(role);
-		return redirect(ResultPath.role);
+		return redirect(Path.role);
 	}
 
 	@RequestMapping("/edit/{id}")
@@ -76,7 +76,7 @@ public class RoleController extends CommonController {
 		logger.debug("update: role[{}]", role);
 
 		roleService.saveOrUpdate(role);
-		return redirect(ResultPath.role);
+		return redirect(Path.role);
 	}
 
 	@RequestMapping("/destroy/{id}")
@@ -84,7 +84,7 @@ public class RoleController extends CommonController {
 		logger.debug("remove: id[{}]", id);
 
 		roleService.delete(id);
-		return redirect(ResultPath.role);
+		return redirect(Path.role);
 	}
 
 	@ModelAttribute("role")
@@ -141,7 +141,7 @@ public class RoleController extends CommonController {
 		Role role = roleService.get(id);
 		role.setMenus(StringUtils.stringToSet(menus));
 		roleService.update(role);
-		return redirect(ResultPath.role);
+		return redirect(Path.role);
 	}
 
 	private List<Menu> sort(List<Menu> menus) {

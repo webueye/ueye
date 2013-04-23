@@ -4,54 +4,53 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<title>角色编辑</title>
-		<jsp:include page="/common/header.jsp"/>
-	</head>
+<head>
+<title>修改</title>
+<jsp:include page="/common/header.jsp" />
+</head>
 
-	<body>
-	
-		<div class="container">
-			<div class="row">
-				<div class="search">
-					<div style="margin-left: 10px;margin-bottom: 10px;font: bold;">
-					     <b>角色修改</b>
-					</div>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="search">
+				<div style="margin-left: 10px; margin-bottom: 10px; font: bold;">
+					<b>修改</b>
 				</div>
-				<form id="validateForm" class="form-horizontal" method="post" action="${pageContext.request.contextPath}/role/update/${role.id}">	
-					<table class="table table-bordered table-striped">
-						<tbody>
-							<tr class="th">
-								<th class="rth">角色名称：</th>
-								<td class="ltd">
-									<input  name="id" value="${role.id}" type="hidden"/>
-									<input type="hidden" name="company.id" value="${currentAccount.company.id}"/>
-									<input class="input-xlarge required" name="roleName" value="${role.roleName}" type="text"/>
-								</td>
-							</tr>
-							<tr class="th">
-								<th class="rth">角色描述：</th>
-								<td class="ltd">
-									<input class="input-xlarge" name="description" value="${role.description}" type="text"/>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2" align="center">
-									<div align="center">
-										<button type="submit" class="btn btn-primary">修 改</button>
-										<button type="button" class="btn btn-primary historyBackClass">返回</button>
-									</div>
-								</td>
-							</tr>							
-						</tbody>
-					</table>
-				</form>	
-						
 			</div>
+			<form id="validateForm" class="form-horizontal" method="post" action="${ctx}/role/update/${role.id}">
+				<table class="table table-bordered table-striped">
+					<tbody>
+						<tr>
+							<td>角色名称：</td>
+							<td>
+								<input name="id" value="${role.id}" type="hidden" />
+								<input class="input-meduim required" name="roleName" type="text" value="${role.roleName}" />
+							</td>
+						</tr>
+						<tr>
+							<td>角色描述：</td>
+							<td>
+								<textarea name="description" rows="3" cols="" class="input-meduim">${role.description}</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center">
+								<div align="center">
+									<button type="submit" class="btn btn-primary">修 改</button>
+										<button type="button" class="btn btn-primary historyBackClass">返回</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+
 		</div>
-		
-		<jsp:include page="/common/footer.jsp"/>
-		
-	</body>
+	</div>
+
+	<jsp:include page="/common/footer.jsp" />
+
+</body>
 
 </html>

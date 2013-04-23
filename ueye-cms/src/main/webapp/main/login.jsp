@@ -133,6 +133,15 @@
 	      </div>
 	
 	    </div> <!-- /container -->
+	    
+	    <script type="text/javascript">
+		<!--
+			if (window.self != window.top) {
+				window.open(".", "_top");
+			}
+			document.forms["loginForm"].elements["username"].focus();
+		// -->
+		</script>
 
   	</body>
 </html>

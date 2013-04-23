@@ -62,14 +62,6 @@
 									</select>
 								</td>
 							</tr>
-							<tr class="th" id="texp" style="display:table-row">
-								<th align="right">菜单角色:</th>
-								<td class="ltd">
-				                   	<input class="input-xlarge required" name="roleType" value="true" type="radio" ${menu.roleType? 'checked': ''}/>工厂
-									<input class="input-xlarge required" name="roleType" value="false" type="radio" ${menu.roleType == false? 'checked': ''} style="margin-left: 20px;"/>经销商
-									<label style="display:none;" for="roleType" generated="true" class="error">必选字段</label>
-								</td>
-							</tr>
 													
 							<tr>
 								<td colspan="2" align="center">

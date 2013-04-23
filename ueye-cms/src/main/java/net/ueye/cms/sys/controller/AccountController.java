@@ -6,9 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import net.ueye.cms.Module;
 import net.ueye.cms.commons.controller.CommonController;
-import net.ueye.cms.sys.controller.path.ResultPath;
+import net.ueye.cms.sys.controller.path.Path;
 import net.ueye.cms.sys.entity.Account;
-import net.ueye.cms.sys.entity.Dept;
 import net.ueye.cms.sys.entity.Role;
 import net.ueye.cms.sys.service.AccountService;
 import net.ueye.cms.sys.service.RoleService;
@@ -33,66 +32,49 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @since 2013-4-23
  */
 @Controller
-@RequestMapping(ResultPath.account)
+@RequestMapping(Path.account)
 public class AccountController extends CommonController {
 
-	@RequestMapping
-	public String list(Page page, Model model) {
-		accountService.findPage(page);
-		return forward(ViewName.list);
-	}
-
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String search(HttpServletRequest request, Page page) {
-		logger.debug("search: page[{}]", page);
+	public String list(HttpServletRequest request, Page page) {
 		List<PropertyFilter> filters = PropertyFilter.buildFromHttpRequest(request);
 		accountService.findPage(page, filters);
 		return forward(ViewName.list);
 	}
 
-	@RequestMapping("/edit-new")
 	public String editNew(Model model) {
 		return forward(ViewName.insert);
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
 	public String create(Account account, Model model, String deptId) {
 		logger.debug("create: account[{}]", account);
 
 		account.setPassword(EncodeUtils.md5(account.getPassword()));
 		accountService.save(account);
-		return redirect(ResultPath.account);
+		return redirect(Path.account);
 	}
 
-	@RequestMapping("/edit/{id}")
 	public String edit(@PathVariable long id, Account account, Model model) {
 		logger.debug("edit: id[{}], account[{}]", id, account);
 		return forward(ViewName.edit);
 	}
 
-	@RequestMapping(value = "/update/{account.id}", method = RequestMethod.POST)
 	public String update(Account account, String deptId, Model model) {
 		logger.debug("update: account[{}]", account);
 
-		if (org.apache.commons.lang.StringUtils.isNotBlank(deptId)) {
-			account.setDept(new Dept(Long.valueOf(deptId)));
-		}
 		accountService.saveOrUpdate(account);
-		return redirect(ResultPath.account);
+		return redirect(Path.account);
 	}
 
-	@RequestMapping("/show/{id}")
 	public String show(@PathVariable long id) {
 		logger.debug("show: id[{}]", id);
 		return forward(ViewName.show);
 	}
 
-	@RequestMapping("/destroy/{id}")
 	public String destroy(@PathVariable long id) {
 		logger.debug("remove[{}]", id);
 
 		accountService.delete(id);
-		return redirect(ResultPath.account);
+		return redirect(Path.account);
 	}
 
 	@RequestMapping("role/{id}")
@@ -119,7 +101,7 @@ public class AccountController extends CommonController {
 		Account account = accountService.get(id);
 		account.setRoles(StringUtils.stringToSet(roleId));
 		accountService.update(account);
-		return redirect(ResultPath.account);
+		return redirect(Path.account);
 	}
 
 	@RequestMapping("/state/{id}")
@@ -128,7 +110,7 @@ public class AccountController extends CommonController {
 		Account account = accountService.get(id);
 		account.setStatus(!BooleanUtils.isTrue(account.getStatus()));
 		accountService.update(account);
-		return redirect(ResultPath.account);
+		return redirect(Path.account);
 	}
 
 	@ModelAttribute("account")

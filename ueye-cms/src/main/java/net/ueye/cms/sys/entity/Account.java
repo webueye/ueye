@@ -3,30 +3,27 @@ package net.ueye.cms.sys.entity;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import net.ueye.cms.Const;
 import net.ueye.commons.orm.entity.BaseEntity;
 
 import org.hibernate.annotations.Type;
+import org.joda.time.LocalDate;
 
 /**
  * @author rubys@vip.qq.com
- * @since 2012-5-28
+ * @since 2013-4-24
  */
 @SuppressWarnings("serial")
 @Entity
 @Table(name = Const.tablePrefix + "account")
 public class Account extends BaseEntity {
 
-	private String userNo;
-	private String nickname;
-	private String email;
 	private String username;
 	private String password;
+	private String email;
+	private String realname;
 	private Boolean status;
 	private Boolean admin;
 	private Boolean sex;
@@ -34,35 +31,11 @@ public class Account extends BaseEntity {
 	private String mobile;
 	private String memo;
 
+	@Type(type = "net.ueye.commons.orm.entity.type.PersistentLocalDate")
+	private LocalDate birthday;
+
 	@Type(type = "net.ueye.commons.orm.entity.type.PersistentSet")
 	private Set<Long> roles;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "deptId")
-	private Dept dept;
-
-	public String getUserNo() {
-		return userNo;
-	}
-
-	public void setUserNo(String userNo) {
-		this.userNo = userNo;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public String getUsername() {
 		return username;
@@ -78,6 +51,22 @@ public class Account extends BaseEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setRealname(String realname) {
+		this.realname = realname;
+	}
+
+	public String getRealname() {
+		return realname;
 	}
 
 	public Boolean getStatus() {
@@ -128,20 +117,20 @@ public class Account extends BaseEntity {
 		this.memo = memo;
 	}
 
-	public void setRoles(Set<Long> roles) {
-		this.roles = roles;
-	}
-
 	public Set<Long> getRoles() {
 		return roles;
 	}
 
-	public void setDept(Dept dept) {
-		this.dept = dept;
+	public void setRoles(Set<Long> roles) {
+		this.roles = roles;
 	}
 
-	public Dept getDept() {
-		return dept;
+	public void setBirthday(LocalDate birthday) {
+		this.birthday = birthday;
+	}
+
+	public LocalDate getBirthday() {
+		return birthday;
 	}
 
 }

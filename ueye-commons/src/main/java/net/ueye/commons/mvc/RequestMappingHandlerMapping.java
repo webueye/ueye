@@ -72,9 +72,9 @@ public class RequestMappingHandlerMapping extends org.springframework.web.servle
 	private Map<String, RequestMappingInfo> getMappingForMethods(Class<?> handlerType) {
 		RequestCondition<?> condition = getCustomTypeCondition(handlerType);
 		Map<String, RequestMappingInfo> mapping = new HashMap<String, RequestMappingInfo>();
-		mapping.put("list", createRequestMappingInfo(new String[] { "" }, condition, RequestMethod.GET));
 		mapping.put("index", createRequestMappingInfo(new String[] { "" }, condition, RequestMethod.GET));
 		mapping.put("create", createRequestMappingInfo(new String[] { "" }, condition, RequestMethod.POST));
+		mapping.put("list", createRequestMappingInfo(new String[] { "list" }, condition, RequestMethod.GET, RequestMethod.POST));
 		mapping.put("update", createRequestMappingInfo(new String[] { "update", "update/{id}" }, condition, RequestMethod.POST));
 		mapping.put("destroy", createRequestMappingInfo(new String[] { "destroy/{id}" }, condition, RequestMethod.GET));
 		mapping.put("show", createRequestMappingInfo(new String[] { "show/{id}" }, condition, RequestMethod.GET));

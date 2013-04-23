@@ -11,7 +11,7 @@ import net.ueye.cms.Const;
 
 /**
  * @author rubys@vip.qq.com
- * @since 2012-5-29
+ * @since 2013-4-24
  */
 @SuppressWarnings("serial")
 @Entity
@@ -23,7 +23,6 @@ public class Menu extends NodeModel {
 	private String label;
 	private String action;
 	private Integer orderValue;
-	private Boolean roleType;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "parentId")
@@ -87,11 +86,4 @@ public class Menu extends NodeModel {
 		this.parent = parent;
 	}
 
-	public Boolean getRoleType() {
-		return roleType;
-	}
-
-	public void setRoleType(Boolean roleType) {
-		this.roleType = roleType;
-	}
 }

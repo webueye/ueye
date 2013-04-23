@@ -30,7 +30,6 @@
 							<tr >
 								<th class="th">菜单名称</th>
 								<th class="th">排序</th>
-								<th class="th">菜单角色</th>
 								<th class="th">添加子节点</th>
 								<th class="th">修 改</th>
 								<th class="th">删 除</th>
@@ -71,10 +70,6 @@
 								</td>
 								<td class="td">
 									${menu.orderValue}
-								</td>								
-								<td class="td">
-									${menu.roleType? '工厂': ''}
-									${menu.roleType? '': '经销商'}
 								</td>								
 								<td> 
 									<c:if test="${menu.leaf}">
