@@ -5,7 +5,15 @@ package net.ueye.cms;
  * @since 2013-3-15
  */
 public interface Const {
-	
-	String tablePrefix = "";
+
+	String tablePrefix = "u_";
+
+	String insert = "insert";
+
+	String update = "update";
+
+	String delete = "delete";
+
+	String nonParentUpdate = "non_parent_update";
 
 }

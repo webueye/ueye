@@ -1,36 +1,31 @@
 package net.ueye.cms.sys.service.impl;
 
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-import net.ueye.cms.commons.service.impl.BaseServiceImpl;
-import net.ueye.cms.sys.dao.AccountDao;
 import net.ueye.cms.sys.entity.Account;
 import net.ueye.cms.sys.service.AccountService;
-import net.ueye.commons.orm.dao.BaseDao;
+import net.ueye.commons.bean.Page;
+import net.ueye.commons.orm.dao.HibernateDaoSupport;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Example;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
- * @author rubys
- * @since 2013-3-15
+ * @author rubys@vip.qq.com
+ * @since 2012-5-28
  */
-@Service
-public class AccountServiceImpl extends BaseServiceImpl<Account> implements AccountService {
-
-	private AccountDao accountDao;
-	
-	@Override
-	public Account findByUsername(String username){
-		return accountDao.findByUsername(username);
-	}
+@Transactional
+@Service("accountService")
+public class AccountServiceImpl extends HibernateDaoSupport<Account> implements
+		AccountService {
 
 	@Override
-	public BaseDao<Account> getBaseDao() {
-		return accountDao;
-	}
-
-	@Required
-	public void setAccountDao(AccountDao accountDao) {
-		this.accountDao = accountDao;
+	public List<Account> findAccounts(Account account, Page page) {
+		DetachedCriteria detachedCriteria = createDetachedCriteria();
+		detachedCriteria.add(Example.create(account));
+		return findPage(detachedCriteria, page);
 	}
 
 }

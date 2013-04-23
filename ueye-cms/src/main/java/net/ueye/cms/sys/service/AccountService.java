@@ -1,18 +1,17 @@
 package net.ueye.cms.sys.service;
 
-import net.ueye.cms.commons.service.BaseService;
+import java.util.List;
+
 import net.ueye.cms.sys.entity.Account;
+import net.ueye.commons.bean.Page;
+import net.ueye.commons.orm.dao.BaseDao;
 
 /**
- * @author rubys
- * @since 2013-3-15
+ * @author rubys@vip.qq.com
+ * @since 2012-5-28
  */
-public interface AccountService extends BaseService<Account> {
+public interface AccountService extends BaseDao<Account> {
 
-	public static final String HASH_ALGORITHM = "SHA-1";
-	public static final int HASH_INTERATIONS = 1024;
-	static final int SALT_SIZE = 8;
-
-	Account findByUsername(String username);
+	List<Account> findAccounts(Account account, Page page);
 
 }
