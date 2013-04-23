@@ -20,9 +20,15 @@
 		<property name="successUrl" value="/index.jsp" />
 		<property name="filterChainDefinitions">
 			<value>
+				/**/*.css=anon
+				/**/*.jpg=anon
+				/**/*.png=anon
+				/**/*.git=anon
+				/**/*.js=anon
+				/**/login.jsp = anon
 				/login = authc
 				/logout = logout
-				/account/** = user
+				/** = user
 			</value>
 		</property>
 	</bean>
