@@ -45,7 +45,7 @@ public class AccountController extends CommonController {
 		return forward(ViewName.insert);
 	}
 
-	public String create(Account account, Model model, String deptId) {
+	public String create(Account account) {
 		logger.debug("create: account[{}]", account);
 
 		account.setPassword(EncodeUtils.md5(account.getPassword()));
@@ -53,15 +53,19 @@ public class AccountController extends CommonController {
 		return redirect(Path.account);
 	}
 
-	public String edit(@PathVariable long id, Account account, Model model) {
+	public String edit(@PathVariable long id, Account account) {
 		logger.debug("edit: id[{}], account[{}]", id, account);
 		return forward(ViewName.edit);
 	}
 
-	public String update(Account account, String deptId, Model model) {
+	public String update(Account account, String newPassword) {
 		logger.debug("update: account[{}]", account);
 
+		if (!org.apache.commons.lang.StringUtils.isBlank(newPassword)) {
+			account.setPassword(EncodeUtils.md5(newPassword));
+		}
 		accountService.saveOrUpdate(account);
+
 		return redirect(Path.account);
 	}
 

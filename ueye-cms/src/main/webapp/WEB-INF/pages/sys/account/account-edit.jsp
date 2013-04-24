@@ -18,7 +18,7 @@
 				<b><font color="red">${msg}</font></b>
 			</div>
 
-			<form id="validateForm" class="form-horizontal" method="post" action="${pageContext.request.contextPath}/account/update/${account.id}">
+			<form id="validatePasswordForm" class="form-horizontal" method="post" action="${pageContext.request.contextPath}/account/update/${account.id}">
 				<table class="table table-bordered table-striped">
 					<tbody>
 						<tr>
@@ -35,15 +35,15 @@
 						<tr>
 							<td>登陆密码：</td>
 							<td>
-								<input class="input-medium required" name="password" type="password" placeholder="不修改请留空" />
+								<input class="input-medium" id="newPassword" name="newPassword" type="password" placeholder="不修改请留空" />
 							</td>
 							<td>确认密码：</td>
 							<td>
-								<input class="input-medium required" name="password" type="password" placeholder="不修改请留空" />
+								<input class="input-medium" id="confirmPassword" name="confirmPassword" type="password" placeholder="不修改请留空" />
 							</td>
 						</tr>
 						<tr>
-							<td>禁用：</td>
+							<td>状态：</td>
 							<td colspan="3">
 								<input class="input-medium required" name="status" value="true" type="radio" ${account.status? 'checked': ''} />
 								启用
@@ -97,6 +97,31 @@
 	</div>
 
 	<jsp:include page="/common/footer.jsp" />
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#validatePasswordForm").validate({
+				rules : {
+					newPassword : {
+						required : false,
+					},
+					confirmPassword : {
+						required : false,
+						equalTo : "#newPassword"
+					},
+				},
+				messages : {
+					newPassword : {
+						newPassword : "请输入新密码",
+					},
+					confirmPassword : {
+						required : "请输入确认密码",
+						equalTo : "确认密码与新密码不同,请重新输入"
+					},
+				}
+			});
+		});
+	</script>
 
 </body>
 

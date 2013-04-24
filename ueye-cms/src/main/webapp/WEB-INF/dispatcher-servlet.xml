@@ -24,7 +24,7 @@
 	<mvc:default-servlet-handler />
 
 	<bean class="net.ueye.commons.mvc.RequestMappingHandlerMapping" autowire="no">
-		<property name="order" value="0" />
+		<property name="order" value="-1" />
 	</bean>
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

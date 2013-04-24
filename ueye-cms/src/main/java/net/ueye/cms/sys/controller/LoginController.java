@@ -31,7 +31,6 @@ import com.google.common.collect.Lists;
 @RequestMapping(Path.login)
 public class LoginController extends CommonController {
 
-	@RequestMapping
 	public String index() {
 		return redirect("/main/login.jsp");
 	}

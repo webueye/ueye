@@ -25,24 +25,32 @@ import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondit
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.util.UrlPathHelper;
 
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+
 /**
  * @author rubys@vip.qq.com
  * @since 2013-3-4
  */
 public class RequestMappingHandlerMapping extends org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping {
 
+	@Override
 	protected void detectHandlerMethods(final Object handler) {
 		Class<?> handlerType = (handler instanceof String) ? getApplicationContext().getType((String) handler) : handler.getClass();
 
 		final Class<?> userType = ClassUtils.getUserClass(handlerType);
 
 		Set<Method> methods = HandlerMethodSelector.selectMethods(userType, new MethodFilter() {
+			@Override
 			public boolean matches(Method method) {
 				return getMappingForMethod(method, userType) != null;
 			}
 		});
 
+		Set<String> methodNames = Sets.newHashSet();
 		for (Method method : methods) {
+			methodNames.add(method.getName());
+
 			RequestMappingInfo mapping = getMappingForMethod(method, userType);
 			registerHandlerMethod(handler, method, mapping);
 		}
@@ -50,16 +58,37 @@ public class RequestMappingHandlerMapping extends org.springframework.web.servle
 		final List<String> exts = Arrays.asList("list", "index", "create", "show", "edit", "editNew", "destroy", "update");
 
 		Set<Method> extMethods = HandlerMethodSelector.selectMethods(userType, new MethodFilter() {
+			@Override
 			public boolean matches(Method method) {
 				return getMappingForMethod(method, userType) == null && exts.contains(method.getName());
 			}
 		});
 
-		extMethods.removeAll(methods);
+		Map<String, Method> extMethodMap = Maps.newHashMap();
+		for (Method method : extMethods) {
+			String methodName = method.getName();
+			if (methodNames.contains(methodName)) {
+				continue;
+			}
+
+			if (!String.class.getSimpleName().equals(method.getReturnType().getSimpleName())) {
+				continue;
+			}
+
+			Method m = extMethodMap.get(methodName);
+			if (m == null) {
+				extMethodMap.put(methodName, method);
+			} else {
+				if (method.getParameterTypes().length > m.getParameterTypes().length) {
+					extMethodMap.put(methodName, method);
+				}
+			}
+		}
 
 		RequestMapping typeAnnotation = AnnotationUtils.findAnnotation(handlerType, RequestMapping.class);
 		Map<String, RequestMappingInfo> map = getMappingForMethods(handlerType);
-		for (Method method : extMethods) {
+		for (Method method : extMethodMap.values()) {
+
 			RequestMappingInfo mapping = map.get(method.getName());
 			if (typeAnnotation != null) {
 				mapping = createRequestMappingInfo(typeAnnotation.value(), null).combine(mapping);

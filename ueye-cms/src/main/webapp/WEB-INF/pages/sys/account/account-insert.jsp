@@ -18,7 +18,7 @@
 				<b><font color="red">${msg}</font></b>
 			</div>
 
-			<form id="validateForm" class="form-horizontal" method="post" action="${ctx}/account">
+			<form id=validatePasswordForm class="form-horizontal" method="post" action="${ctx}/account">
 				<table class="table table-bordered table-striped">
 					<tbody>
 						<tr>
@@ -34,11 +34,11 @@
 						<tr>
 							<td>登陆密码：</td>
 							<td>
-								<input class="input-medium required" name="password" type="password" />
+								<input class="input-medium required" id="password" name="password" type="password" />
 							</td>
 							<td>确认密码：</td>
 							<td>
-								<input class="input-medium required" name="password" type="password" />
+								<input class="input-medium required" id="confirmPassword" name="confirmPassword" type="password" />
 							</td>
 						</tr>
 						<tr>
@@ -88,6 +88,31 @@
 	</div>
 
 	<jsp:include page="/common/footer.jsp" />
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#validatePasswordForm").validate({
+				rules : {
+					password : {
+						required : true,
+					},
+					confirmPassword : {
+						required : true,
+						equalTo : "#password"
+					},
+				},
+				messages : {
+					password : {
+						password : "请输入新密码",
+					},
+					confirmPassword : {
+						required : "请输入确认密码",
+						equalTo : "确认密码与新密码不同,请重新输入"
+					},
+				}
+			});
+		});
+	</script>
 
 </body>
 

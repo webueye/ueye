@@ -52,7 +52,7 @@ public class MenuController extends CommonController {
 	@RequestMapping("/left")
 	public String left(HttpSession session, Model model) {
 		Multimap<Long, Menu> menuGroup = (Multimap<Long, Menu>) session.getServletContext().getAttribute("menuGroup");
-		Multimap<Long, Menu> duplicates = duplicate(menuGroup.values());
+//		Multimap<Long, Menu> duplicates = duplicate(menuGroup.values());
 
 //		Account account = getAccount(model);
 //		if (BooleanUtils.isTrue(account.getCompany().getRoleType()) && BooleanUtils.isTrue(account.getAdmin())) {
@@ -83,7 +83,9 @@ public class MenuController extends CommonController {
 //			}
 //			duplicates = duplicate(menus);
 //		}
-		session.setAttribute("menus", sort(duplicates.get(-1L)));
+//		session.setAttribute("menus", sort(duplicates.get(-1L)));
+		
+		session.setAttribute("menus", menuService.findAll());
 		return redirect("/main/left.jsp");
 	}
 
